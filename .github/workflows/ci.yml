@@ -11,6 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: List repository files
+        run: ls -R
+
+      - name: Navigate to project directory
+        run: cd subdirectory # Substitua 'subdirectory' pelo diretório correto, ou remova se estiver na raiz.
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
