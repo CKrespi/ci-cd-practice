@@ -1,6 +1,6 @@
 name: CI/CD Pipeline
 
-on: 
+on:
   push:
   pull_request:
 
@@ -17,7 +17,19 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            echo "package.json not found in the current directory."
+            exit 1
+          fi
 
       - name: Run tests
-        run: npm test
+        run: |
+          if [ -f package.json ]; then
+            npm test
+          else
+            echo "package.json not found. Cannot run tests."
+            exit 1
+          fi
